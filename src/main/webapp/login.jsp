@@ -21,11 +21,16 @@
 
 <html>
 <head>
+
+    <%@ include file="partials/head.jsp" %>
     <title>Login</title>
+
 </head>
 <body>
 
-<h1>Login</h1>
+    <%@ include file="partials/navbar.jsp" %>
+
+    <h1>Login</h1>
 
     <form method="POST">
         <p>
@@ -41,5 +46,7 @@
         </p>
     </form>
 
+
+    <%@ include file="partials/navbar.jsp" %>
 </body>
 </html>

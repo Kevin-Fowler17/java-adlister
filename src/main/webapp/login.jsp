@@ -47,6 +47,7 @@
     </form>
 
 
-    <%@ include file="partials/navbar.jsp" %>
+    <%@ include file="partials/body.jsp" %>
+
 </body>
 </html>

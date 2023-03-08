@@ -22,8 +22,9 @@
 <html>
 <head>
 
-    <%@ include file="partials/head.jsp" %>
-    <title>Login</title>
+    <jsp:include page="partials/head.jsp" >
+        <jsp:param name="title" value="Login" />
+    </jsp:include>
 
 </head>
 <body>

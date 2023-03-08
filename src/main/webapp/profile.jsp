@@ -16,9 +16,14 @@
 <body>
 
     <%@ include file="partials/navbar.jsp" %>
+<hr>
+    <h1>Profile Page</h1>
 
 
     <%@ include file="partials/body.jsp" %>
+
+    <hr>
+    <%@ include file="partials/footer.jsp" %>
 
 </body>
 </html>

@@ -30,7 +30,9 @@
 
     <%@ include file="partials/navbar.jsp" %>
 
-    <h1>Login</h1>
+    <hr>
+
+    <h1>Login Page</h1>
 
     <form method="POST">
         <p>
@@ -49,5 +51,8 @@
 
     <%@ include file="partials/body.jsp" %>
 
+    <hr>
+
+    <%@ include file="partials/footer.jsp" %>
 </body>
 </html>

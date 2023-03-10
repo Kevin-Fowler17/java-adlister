@@ -5,11 +5,12 @@
   Time: 2:58 PM
   To change this template use File | Settings | File Templates.
 --%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
     <jsp:include page="../partials/head.jsp" >
-        <jsp:param name="title" value="Index" />
+        <jsp:param name="title" value="Ads" />
     </jsp:include>
 </head>
 <body>
@@ -21,8 +22,8 @@
 <h1>Ads ... </h1>
 
 <c:forEach var="ad" items="${ads}">
-<h2>${ad.title}</h2>
-<p>${ad.description}</p>
+    <h2>${ad.title}</h2>
+    <p>${ad.description}</p>
 </c:forEach>
 
 <%@ include file="../partials/body.jsp" %>

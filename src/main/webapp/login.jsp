@@ -7,17 +7,17 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
-<%
-    if (request.getMethod().equalsIgnoreCase("post")) {
-        String username = request.getParameter("username");
-        String password = request.getParameter("password");
-        if (username.equalsIgnoreCase("admin") && password.equalsIgnoreCase("password")) {
-            response.sendRedirect("profile.jsp");
-        } else {
-            response.sendRedirect("login.jsp");
-        }
-    }
-%>
+<%--<%--%>
+<%--    if (request.getMethod().equalsIgnoreCase("post")) {--%>
+<%--        String username = request.getParameter("username");--%>
+<%--        String password = request.getParameter("password");--%>
+<%--        if (username.equalsIgnoreCase("admin") && password.equalsIgnoreCase("password")) {--%>
+<%--            response.sendRedirect("profile.jsp");--%>
+<%--        } else {--%>
+<%--            response.sendRedirect("login.jsp");--%>
+<%--        }--%>
+<%--    }--%>
+<%--%>--%>
 
 <html>
 <head>

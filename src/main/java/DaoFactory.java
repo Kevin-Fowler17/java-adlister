@@ -7,4 +7,12 @@ public class DaoFactory {
         }
         return adsDao;
     }
+
+//    public static Ads getAdsDao() {
+//        if (adsDao == null) {
+//            Config config = new Config();
+//            adsDao
+//        }
+    }
+
 }

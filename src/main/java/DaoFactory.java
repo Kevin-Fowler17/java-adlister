@@ -3,16 +3,19 @@ public class DaoFactory {
 
     public static Ads getAdsDao() {
         if (adsDao == null) {
-            adsDao = new ListAdsDao();
+//            adsDao = new ListAdsDao();
+            Config config = new Config();
+            adsDao = new MySQLAdsDao(config);
         }
         return adsDao;
     }
 
-//    public static Ads getAdsDao() {
-//        if (adsDao == null) {
+//    public static Books getBooksDao() {
+//        if (booksDao == null) {
 //            Config config = new Config();
-//            adsDao
+//            booksDao = new MySQLBooksDao(config);
 //        }
-    }
+//        return booksDao;
+//    }
 
 }

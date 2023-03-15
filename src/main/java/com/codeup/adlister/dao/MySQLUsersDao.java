@@ -40,7 +40,7 @@ public class MySQLUsersDao implements Users {
 
     @Override
     public Long insert(User user) {
-        String sql = "INSERT INTO adlister_users(id, username, email, password) VALUES (?, ?, ?);";
+        String sql = "INSERT INTO adlister_users(username, email, password) VALUES (?, ?, ?);";
         try {
             PreparedStatement stmt = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
             stmt.setString(1, user.getUsername());

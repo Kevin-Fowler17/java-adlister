@@ -1,6 +1,8 @@
 package com.codeup.adlister.controllers;
 
+import com.codeup.adlister.dao.DaoFactory;
 import com.codeup.adlister.dao.MySQLUsersDao;
+import com.codeup.adlister.dao.Users;
 import com.codeup.adlister.models.User;
 
 import javax.servlet.ServletException;
@@ -17,19 +19,18 @@ public class RegisterServlet extends HttpServlet {
         request.getRequestDispatcher("/WEB-INF/register.jsp").forward(request, response);
     }
 
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) {
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
+
         // TODO: ensure the submitted information is valid
-        User user = new user(
-                request.getParameter("username"), // for now we'll hardcode the user id
+        User user = new User(
+                request.getParameter("username"),
                 request.getParameter("email"),
                 request.getParameter("password")
         );
-        MySQLUsersDao.getUsersDao().insert(user);
-        response.sendRedirect("/profile.jsp");
-
-
         // TODO: create a new user based off of the submitted information
+        DaoFactory.getUsersDao().insert(user);
         // TODO: if a user was successfully created, send them to their profile
+        response.sendRedirect("/profile.jsp");
 
     }
 }

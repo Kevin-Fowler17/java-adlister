@@ -23,8 +23,8 @@ public class MySQLUsersDao implements Users {
 
     @Override
     public User findByUsername(String username) {
-        String sql = "SELECT * FROM adlister_users WHERE username = ?;";
         try {
+            String sql = "SELECT * FROM adlister_users WHERE username = ?;";
             PreparedStatement stmt = connection.prepareStatement(sql);
             stmt.setString(1, username);
             ResultSet rs = stmt.executeQuery();
@@ -40,8 +40,8 @@ public class MySQLUsersDao implements Users {
 
     @Override
     public Long insert(User user) {
-        String sql = "INSERT INTO adlister_users(username, email, password) VALUES (?, ?, ?);";
         try {
+            String sql = "INSERT INTO adlister_users(username, email, password) VALUES (?, ?, ?);";
             PreparedStatement stmt = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
             stmt.setString(1, user.getUsername());
             stmt.setString(2, user.getEmail());

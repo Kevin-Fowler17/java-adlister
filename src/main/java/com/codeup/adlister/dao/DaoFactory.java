@@ -18,4 +18,12 @@ public class DaoFactory {
         }
         return usersDao;
     }
+
+    public static void main(String[] args) {
+        // test users dao
+        Users dao = DaoFactory.getUsersDao();
+        System.out.println(dao.findByUsername("kevin").getUsername());
+        System.out.println(dao.findByUsername("steve").getUsername());
+    }
+
 }

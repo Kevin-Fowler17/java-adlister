@@ -35,7 +35,6 @@ public class RegisterServlet extends HttpServlet {
         }
 
         String hash = BCrypt.hashpw(password, BCrypt.gensalt());
-        System.out.println(hash);
 
         // create and save a new user
         User user = new User(username, email, hash);

@@ -16,7 +16,7 @@ public class AdShowPageServlet extends HttpServlet {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-//        Ad ad = DaoFactory.getAdsDao().findByAdId(request.getParameter("id"));
+        Ad ad = DaoFactory.getAdsDao().findByAdId(request.getParameter("id"));
         User user = DaoFactory.getUsersDao().findByUserId(request.getParameter("uid"));
 
 //        System.out.println(ad.getId());
@@ -29,7 +29,7 @@ public class AdShowPageServlet extends HttpServlet {
 //        System.out.println(user.getEmail());
 //        System.out.println(user.getPassword());
 
-//        request.getSession().setAttribute("viewAd", ad);
+        request.getSession().setAttribute("viewAd", ad);
         request.getSession().setAttribute("userAd", user);
 
         request.getRequestDispatcher("/WEB-INF/ads/showAd.jsp").forward(request, response);

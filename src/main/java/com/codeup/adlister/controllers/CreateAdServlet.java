@@ -29,6 +29,12 @@ public class CreateAdServlet extends HttpServlet {
 
         User user = (User) request.getSession().getAttribute("user");
 
+        if (user == null) {
+            System.out.println("null user trying to create an ad!");
+            response.sendRedirect("/login");
+            return;
+        }
+
         Ad ad = new Ad(
             user.getId(),
             request.getParameter("title"),

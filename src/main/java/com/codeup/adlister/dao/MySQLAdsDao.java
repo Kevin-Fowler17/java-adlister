@@ -24,14 +24,14 @@ public class MySQLAdsDao implements Ads {
     }
 
     @Override
-    public List<Ad> all() {
-        PreparedStatement stmt = null;
+    public Ad findByAdId(String id) {
+        String query = "SELECT * FROM adlister_ads WHERE id = ? LIMIT 1";
         try {
-            stmt = connection.prepareStatement("SELECT * FROM adlister_ads");
-            ResultSet rs = stmt.executeQuery();
-            return createAdsFromResults(rs);
+            PreparedStatement stmt = connection.prepareStatement(query);
+            stmt.setString(1, id);
+            return extractAd(stmt.executeQuery());
         } catch (SQLException e) {
-            throw new RuntimeException("Error retrieving all ads.", e);
+            throw new RuntimeException("Error finding a ad by id", e);
         }
     }
 
@@ -52,6 +52,18 @@ public class MySQLAdsDao implements Ads {
         }
     }
 
+    @Override
+    public List<Ad> all() {
+        PreparedStatement stmt = null;
+        try {
+            stmt = connection.prepareStatement("SELECT * FROM adlister_ads");
+            ResultSet rs = stmt.executeQuery();
+            return createAdsFromResults(rs);
+        } catch (SQLException e) {
+            throw new RuntimeException("Error retrieving all ads.", e);
+        }
+    }
+
     private Ad extractAd(ResultSet rs) throws SQLException {
         return new Ad(
             rs.getLong("id"),
@@ -62,26 +74,6 @@ public class MySQLAdsDao implements Ads {
     }
 
     private List<Ad> createAdsFromResults(ResultSet rs) throws SQLException {
-        List<Ad> ads = new ArrayList<>();
-        while (rs.next()) {
-            ads.add(extractAd(rs));
-        }
-        return ads;
-    }
-
-    @Override
-    public Ad findByAdId(String id) {
-        String query = "SELECT * FROM adlister_ads WHERE id = ? LIMIT 1";
-        try {
-            PreparedStatement stmt = connection.prepareStatement(query);
-            stmt.setString(1, id);
-            return extractAd(stmt.executeQuery());
-        } catch (SQLException e) {
-            throw new RuntimeException("Error finding a ad by id", e);
-        }
-    }
-
-    private List<Ad> createUsersFromResults(ResultSet rs) throws SQLException {
         List<Ad> ads = new ArrayList<>();
         while (rs.next()) {
             ads.add(extractAd(rs));

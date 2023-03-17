@@ -37,9 +37,21 @@ public class MySQLUsersDao implements Users {
     }
 
     @Override
-    public Long insert(User user) {
-        String query = "INSERT INTO adlister_users(username, email, password) VALUES (?, ?, ?)";
+    public User findByUserId(String id) {
+        String query = "SELECT * FROM adlister_users WHERE id = ? LIMIT 1";
         try {
+            PreparedStatement stmt = connection.prepareStatement(query);
+            stmt.setString(1, id);
+            return extractUser(stmt.executeQuery());
+        } catch (SQLException e) {
+            throw new RuntimeException("Error finding a user by id", e);
+        }
+    }
+
+    @Override
+    public Long insert(User user) {
+        try {
+            String query = "INSERT INTO adlister_users(username, email, password) VALUES (?, ?, ?)";
             PreparedStatement stmt = connection.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
             stmt.setString(1, user.getUsername());
             stmt.setString(2, user.getEmail());
@@ -53,18 +65,6 @@ public class MySQLUsersDao implements Users {
         }
     }
 
-    private User extractUser(ResultSet rs) throws SQLException {
-        if (! rs.next()) {
-            return null;
-        }
-        return new User(
-            rs.getLong("id"),
-            rs.getString("username"),
-            rs.getString("email"),
-            rs.getString("password")
-        );
-    }
-
     @Override
     public List<User> all() {
         PreparedStatement stmt = null;
@@ -75,6 +75,18 @@ public class MySQLUsersDao implements Users {
         } catch (SQLException e) {
             throw new RuntimeException("Error retrieving all users.", e);
         }
+    }
+
+    private User extractUser(ResultSet rs) throws SQLException {
+        if (! rs.next()) {
+            return null;
+        }
+        return new User(
+            rs.getLong("id"),
+            rs.getString("username"),
+            rs.getString("email"),
+            rs.getString("password")
+        );
     }
 
     private List<User> createUsersFromResults(ResultSet rs) throws SQLException {

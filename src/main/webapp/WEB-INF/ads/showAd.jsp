@@ -9,16 +9,15 @@
 <jsp:include page="/WEB-INF/partials/navbar.jsp" />
 
 <div class="container">
-    <h1>Here is your ad ... ${adid} </h1>
-    <p>${aduid}</p>
-<%--    <c:forEach var="ad" items="${ads}">--%>
+    <h1>Here is your ad ... </h1>
+
         <div class="col-md-6">
-            <h2><c:out value="${ads[6].title}" /></h2>
-            <p><c:out value="${ads[6].description}" /></p>
-            <p>Seller: <c:out value="${users[4].username}" /></p>
-            <p>Email: <c:out value="${users[4].email}" /></p>
+            <h2><c:out value="${sessionScope.viewAd.title}" /></h2>
+            <p><u>Description</u></p>
+            <p><c:out value="${sessionScope.viewAd.description}" /></p>
+            <p>Seller: <c:out value="${sessionScope.userAd.username}" /></p>
+            <p>Email: <c:out value="${sessionScope.userAd.email}" /></p>
         </div>
-<%--    </c:forEach>--%>
 </div>
 
 </body>
